@@ -1,6 +1,14 @@
 <template>
   <div class="container">
+    <span class="logo" />
     <div class="loginCard">
+      <div class="logoContainer">
+        <img
+          class="logo"
+          src="/src/assets/images/fullLogo.png"
+          alt=""
+        >
+      </div>
       <InputComponent
         class="signin-input"
         :type="InputType.TEXT"
@@ -13,13 +21,13 @@
         icon="lock"
         :placeholder="'Password'"
       />
-      <ButtonComponent
-        class="submit-button"
-        :type="ButtonType.SECONDARY"
-        :text="'Login'"
-        :width="'250px'"
-      />
     </div>
+    <ButtonComponent
+      class="submit-button"
+      :type="ButtonType.SECONDARY"
+      :text="'Login'"
+      :width="'250px'"
+    />
   </div>
 </template>
 
@@ -33,7 +41,7 @@ import { InputType } from '../enums/inputEnum';
 
 <style>
 body {
-  background-image: url("/src/assets/images/loginPageBackground.jpg");
+  background-image: url("/src/assets/images/Background.jpg");
   height:100%;
   background-repeat: no-repeat;
   background-size: cover;
@@ -52,8 +60,9 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.55);
+  background-color: rgba(0, 0, 0, 0.50);
   backdrop-filter: blur(5px);
+  padding-bottom: 35px;
 }
 
 .submit-button {
@@ -64,5 +73,13 @@ body {
 
 .signin-input {
   padding: 0%;
+}
+.logoContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logoContainer .logo{
+  width: 200px;
 }
 </style>

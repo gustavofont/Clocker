@@ -10,7 +10,7 @@
     </div>
     <div class="input-box">
       <input
-        type="text"
+        :type="type"
         :placeholder="placeholder"
       >
     </div>
@@ -34,9 +34,9 @@ defineProps({
     type: String,
     default: '',
   },
-  inputWidthInVh: {
+  width: {
     type: String,
-    default: '180px',
+    default: '190px',
   }
 });
 </script>
@@ -51,7 +51,7 @@ defineProps({
   opacity: 1;
 }
 .input-box {
-  width: calc(v-bind(inputWidthInVh) -60px) ;
+  width: v-bind(width);
   height: 60px;
   background-color: #2b2b2b;
 }
