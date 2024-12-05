@@ -21,11 +21,13 @@ export default [
     },
     rules: {
       // override/add rules settings here, such as:
-      'vue/no-unused-vars': 'error',
-      semi: ["error", "always"],
+      'vue/no-unused-vars': 'warn',
+      '@typescript-eslint/no-unused-vars': 'warn',
+      '@typescript-eslint/no-explicit-any': 0,
+      semi: ["warn", "always"],
       'prefer-const': "warn",
       "indent-legacy": ["warn", 2],
-      quotes: ["error", "single"],
+      quotes: ["warn", "single"],
     }
   }
 ];

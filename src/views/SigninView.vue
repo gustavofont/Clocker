@@ -14,12 +14,16 @@
         :type="InputType.TEXT"
         :icon="'person'"
         :placeholder="'Username'"
+        :model-value="email"
+        @update:model-value="(value) => email = value"
       />
       <InputComponent
         class="signin-input"
         :type="InputType.PASSWORD"
         icon="lock"
         :placeholder="'Password'"
+        :model-value="password"
+        @update:model-value="(value) => password = value"
       />
     </div>
     <ButtonComponent
@@ -27,15 +31,45 @@
       :type="ButtonType.SECONDARY"
       :text="'Login'"
       :width="'250px'"
+      @submit="signin"
     />
   </div>
 </template>
 
 <script setup lang="ts">
-import ButtonComponent from '../components/basicComponents/ButtonComponent.vue';
-import InputComponent from '../components/basicComponents/InputComponent.vue';
-import { ButtonType } from '../enums/buttonEnum';
-import { InputType } from '../enums/inputEnum';
+import { ref } from 'vue';
+import ButtonComponent from '@src/components/basicComponents/ButtonComponent.vue';
+import InputComponent from '@src/components/basicComponents/InputComponent.vue';
+import { ButtonType } from '@src/enums/buttonEnum';
+import { InputType } from '@src/enums/inputEnum';
+import useAuthStore from '@src/store/auth';
+import request from '@src/utils/request';
+
+const storeAuth = useAuthStore();
+
+const email = ref('');
+const password = ref('');
+
+async function signin() {
+  try {
+    const payload = {
+      userData: {
+        email : email.value,
+        password : password.value
+      }
+    };
+    const res: {data: {token: string, user: object}} = await request.post('/signin', payload);
+
+    const {token, user} = res.data;
+    
+    storeAuth.setToken(token);
+    storeAuth.setUser(user);
+
+  } catch (error) {
+    // Notify
+    console.log(error);
+  }
+}
 
 </script>
 

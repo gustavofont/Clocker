@@ -2,6 +2,7 @@
   <div>
     <button
       :class="`custom-button ${type}`"
+      @click="onSubmit"
     >
       {{ text }}
     </button>
@@ -12,6 +13,9 @@
   import { PropType } from 'vue';
 
   type ButtonType = 'Primary' | 'Secondary' | 'Warning';
+
+  const emit = defineEmits(['submit']);
+
   defineProps({
     text: {
       type: String,
@@ -30,6 +34,10 @@
       default: '50px',
     }
   });
+
+  function onSubmit() {
+    emit('submit');
+  }
   
 </script>
 

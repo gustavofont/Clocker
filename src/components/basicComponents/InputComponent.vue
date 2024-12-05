@@ -10,8 +10,10 @@
     </div>
     <div class="input-box">
       <input
+        v-model="modelValue"
         :type="type"
         :placeholder="placeholder"
+        @input="emit('update:modelValue', modelValue)"
       >
     </div>
   </div>
@@ -20,6 +22,8 @@
 <script setup lang="ts">
 import { PropType } from 'vue';
 import { InputType } from '../../enums/inputEnum';
+
+const emit = defineEmits(['update:modelValue']);
 
 defineProps({
   type: {
@@ -39,6 +43,9 @@ defineProps({
     default: '190px',
   }
 });
+
+const modelValue = defineModel<string | number>();
+
 </script>
 
 <style>
