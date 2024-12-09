@@ -1,76 +1,41 @@
 <template>
   <div class="container">
     <span class="logo" />
-    <div class="loginCard">
-      <div class="logoContainer">
-        <img
-          class="logo"
-          src="/src/assets/images/fullLogo.png"
-          alt=""
+    <div class="SwitcherContainer">
+      <div class="switcherHearder">
+        <div
+          :class="`switchBlock${selectedBlock === 'Signin' ? ' selected': ''}`"
+          @click="selectBlock('Signin')"
         >
+          Signin
+        </div>
+        <div
+          :class="`switchBlock${selectedBlock === 'Signup' ? ' selected': ''}`"
+          @click="selectBlock('Signup')"
+        >
+          Signup
+        </div>
       </div>
-      <InputComponent
-        class="signin-input"
-        :type="InputType.TEXT"
-        :icon="'person'"
-        :placeholder="'Username'"
-        :model-value="email"
-        @update:model-value="(value) => email = value"
-      />
-      <InputComponent
-        class="signin-input"
-        :type="InputType.PASSWORD"
-        icon="lock"
-        :placeholder="'Password'"
-        :model-value="password"
-        @update:model-value="(value) => password = value"
-      />
+      <div class="blockContent">
+        <SigninView v-if="selectedBlock === 'Signin'" />
+        <SignupCard v-else />
+      </div>
     </div>
-    <ButtonComponent
-      class="submit-button"
-      :type="ButtonType.SECONDARY"
-      :text="'Login'"
-      :width="'250px'"
-      @submit="signin"
-    />
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import ButtonComponent from '@src/components/basicComponents/ButtonComponent.vue';
-import InputComponent from '@src/components/basicComponents/InputComponent.vue';
-import { ButtonType } from '@src/enums/buttonEnum';
-import { InputType } from '@src/enums/inputEnum';
-import useAuthStore from '@src/store/auth';
-import request from '@src/utils/request';
+  import { ref } from 'vue';
+  import SigninView from '@src/components/SigninCard.vue';
+  import SignupCard from '@src/components/SignupCard.vue';
 
-const storeAuth = useAuthStore();
+  type SwitchOption = 'Signin' | 'Signup';
 
-const email = ref('');
-const password = ref('');
+  const selectedBlock = ref<SwitchOption>('Signin');
 
-async function signin() {
-  try {
-    const payload = {
-      userData: {
-        email : email.value,
-        password : password.value
-      }
-    };
-    const res: {data: {token: string, user: object}} = await request.post('/signin', payload);
-
-    const {token, user} = res.data;
-    
-    storeAuth.setToken(token);
-    storeAuth.setUser(user);
-
-  } catch (error) {
-    // Notify
-    console.log(error);
+  function selectBlock(option: SwitchOption) {
+    selectedBlock.value = option;
   }
-}
-
 </script>
 
 <style>
@@ -81,12 +46,9 @@ body {
   background-size: cover;
 }
 
-.loginCard{
-  height: 30vh;
+.SwitcherContainer {
+  height: 40vh;
   width: 50vh;
-  display: grid;
-  align-items: center;
-  justify-content: center;
 }
 
 .container {
@@ -94,26 +56,40 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.50);
+  background-color: rgb(216, 216, 216);
   backdrop-filter: blur(5px);
-  padding-bottom: 35px;
 }
 
-.submit-button {
+.switcherHearder {
   display: flex;
+  width: 100%;
+  height: 7vh;
   align-items: center;
   justify-content: center;
 }
 
-.signin-input {
-  padding: 0%;
-}
-.logoContainer{
+.switchBlock {
+  font-size: 16px;
+  font-weight: 600;
+  opacity: 0.9;
+  border: 0px solid;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0,0.22);
+  font-family: Monospace;
+  color: white;
 }
-.logoContainer .logo{
-  width: 200px;
+
+.switchBlock.selected {
+  background-color: rgb(216, 216, 216);
+  color: black;
+}
+
+.blockContent {
+  width: 100%;
+  height: 100%;
 }
 </style>

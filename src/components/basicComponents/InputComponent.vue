@@ -60,12 +60,12 @@ const modelValue = defineModel<string | number>();
 .input-box {
   width: v-bind(width);
   height: 60px;
-  background-color: #2b2b2b;
+  background-color: #ababab;
 }
 .icon-box {
   width: 60px;
   height: 60px;
-  background-color: #515050;
+  background-color: #838383;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -78,6 +78,7 @@ const modelValue = defineModel<string | number>();
   font-size: 14px;
   padding-left: 10px;
   padding-right: 7px;
+  font-family: Monospace;
   color: #ffffff
 }
 

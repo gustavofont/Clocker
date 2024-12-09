@@ -45,6 +45,7 @@
   /* CSS */
   .custom-button {
     font-size: 16px;
+    font-family: Monospace;
     font-weight: 600;
     padding: calc(.875rem - 1px) calc(1.5rem - 1px);
     position: relative;
@@ -73,6 +74,6 @@
   }
 
   .custom-button.Secondary {
-    background-color: #9f9f9f;
+    background-color: #838383;
   }
 </style>
