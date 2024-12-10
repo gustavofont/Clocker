@@ -48,8 +48,9 @@
   import InputComponent from '@src/components/basicComponents/InputComponent.vue';
   import { ButtonType } from '@src/enums/buttonEnum';
   import { InputType } from '@src/enums/inputEnum';
-  import useAuthStore from '@src/store/auth';
+  import notify from '@src/notifications/notify';
   import request from '@src/utils/request';
+  import { NotificationType } from '@src/enums/notificationEnum';
 
   const email = ref<string>('');
   const name = ref<string>('');
@@ -71,9 +72,14 @@
         }
       };
       const res = await request.post('/signup', payload);
+      if(res.status === 200) {
+        notify(NotificationType.SUCCESS, 'Account created !');
+      } else {
+        notify(NotificationType.INFO, res.data);
+      }
 
-    } catch (error) {
-    // Notify
+    } catch (error: any) {
+      notify(NotificationType.ERROR, error.response.data);
       console.log(error);
     }
   }

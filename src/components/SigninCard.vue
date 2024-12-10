@@ -41,6 +41,8 @@
   import { InputType } from '@src/enums/inputEnum';
   import useAuthStore from '@src/store/auth';
   import request from '@src/utils/request';
+  import notify from '@src/notifications/notify';
+  import { NotificationType } from '@src/enums/notificationEnum';
 
   const storeAuth = useAuthStore();
 
@@ -62,8 +64,9 @@
       storeAuth.setToken(token);
       storeAuth.setUser(user);
 
-    } catch (error) {
+    } catch (error: any) {
     // Notify
+      notify(NotificationType.ERROR, error.response.data);
       console.log(error);
     }
   }
