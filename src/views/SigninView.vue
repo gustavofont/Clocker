@@ -26,8 +26,8 @@
 
 <script setup lang="ts">
   import { ref } from 'vue';
-  import SigninView from '@src/components/SigninCard.vue';
-  import SignupCard from '@src/components/SignupCard.vue';
+  import SigninView from '@src/components/resources/auth/SigninCard.vue';
+  import SignupCard from '@src/components/resources/auth/SignupCard.vue';
 
   type SwitchOption = 'Signin' | 'Signup';
 
@@ -39,13 +39,6 @@
 </script>
 
 <style>
-body {
-  background-image: url("/src/assets/images/Background.jpg");
-  height:100%;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
 .SwitcherContainer {
   height: 40vh;
   width: 50vh;

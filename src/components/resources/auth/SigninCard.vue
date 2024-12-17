@@ -64,6 +64,8 @@
       storeAuth.setToken(token);
       storeAuth.setUser(user);
 
+      window.location.href = import.meta.env.BASE_URL;
+
     } catch (error: any) {
     // Notify
       notify(NotificationType.ERROR, error.response.data);

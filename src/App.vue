@@ -7,5 +7,11 @@
 <script setup lang="ts">
 </script>
 
-<style lang="scss">
+<style>
+body {
+  background-image: url('/src/assets/images/Background.jpg');
+  height:100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 </style>

@@ -15,9 +15,17 @@ const useAuthStore = defineStore('auth', ()=> {
     user.value = newUser;
   }
 
+  function signout() {
+    localStorage.removeItem('user');
+    localStorage.removeItem('token');
+
+    window.location.reload();
+  }
+
   return {
     setToken,
-    setUser
+    setUser,
+    signout,
   };
 });
 

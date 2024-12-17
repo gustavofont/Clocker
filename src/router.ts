@@ -40,7 +40,6 @@ async function isUserLogged() {
 }
 
 router.beforeEach(async (to: RouteLocationNormalized, from: RouteLocationNormalized, next:(any? :any) => (any)) => {
-  debugger;
   const isLogged = await isUserLogged();
   if(to.path !== '/signin' && !isLogged) next({ path: '/signin'});
   else if (to.path === '/signin' && isLogged) next({path: '/'});
