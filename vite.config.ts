@@ -13,5 +13,12 @@ export default defineConfig({
     alias: [
       { find: '@src', replacement: path.resolve('./src') },
     ]
-  }
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@import "src/assets/scss/global.scss";`,
+      },
+    },
+  },
 });
