@@ -1,5 +1,7 @@
 <template>
-  <div class="container">
+  <div
+    class="signin-view"
+  >
     <span class="logo" />
     <div class="SwitcherContainer">
       <div class="switcherHearder">
@@ -44,7 +46,7 @@
   width: 50vh;
 }
 
-.container {
+.signin-view {
   position: absolute;
   top: 50%;
   left: 50%;
