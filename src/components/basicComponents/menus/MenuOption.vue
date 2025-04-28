@@ -34,6 +34,9 @@
   display: flex; 
   align-items: center;
   justify-content: center;
+  font-family: monospace;
+  font-size: 15px;
+  font-weight: 600;
 }
 
 .optionIcon {

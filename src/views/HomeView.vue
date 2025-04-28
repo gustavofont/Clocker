@@ -25,7 +25,7 @@
           >
             <MenuOption
               :text="'Time Tracker'"
-              :prefix-icon="'grid_view'"
+              :prefix-icon="'schedule'"
             />
           </li>
         </ul>
