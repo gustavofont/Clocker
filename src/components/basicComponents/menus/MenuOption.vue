@@ -32,6 +32,13 @@
 
 .menuOption {
   display: flex; 
+  align-items: center;
+  justify-content: center;
+}
+
+.optionIcon {
+  margin-right: 3px;
+  display: flex;
 }
 
 </style>
