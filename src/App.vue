@@ -9,10 +9,11 @@
 
 <style>
 body {
-  background-image: url('/src/assets/images/Background.jpg');
-  height:100vh;
-  background-repeat: no-repeat;
-  background-size: cover;
+  /* background-image: url('/src/assets/images/Background.jpg'); */
+  height:100%;
+  margin: 0px;
+  /* background-repeat: no-repeat;
+  background-size: cover; */
 }
 #app, .main-container {
   height: 100%;

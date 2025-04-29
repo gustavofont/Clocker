@@ -2,7 +2,7 @@
   <div class="home-view">
     <div class="container">
       <div class="side-options">
-        <div class="logoContainer">
+        <div class="logo-container">
           <img
             class="logo"
             src="/src/assets/images/fullLogo.png"
@@ -29,6 +29,9 @@
             />
           </li>
         </ul>
+        <div class="user-menu-container">
+          <UserMenu/>
+        </div>
       </div>
       <div class="option-content">
         content
@@ -39,6 +42,7 @@
 
 <script setup lang="ts">
   import MenuOption from '@src/components/basicComponents/menus/MenuOption.vue';
+  import UserMenu from '@src/components/UserMenu.vue';
   import {ref} from 'vue';
 
   const selectedSideOption = ref(1);
@@ -78,16 +82,17 @@
 
   .list-options {
     list-style-type: none;
-    margin: 5px;
-    padding: 10px;
+    margin: 0px;
+    padding: 0px;
     width: 100%;
+    height: 77%;
   }
 
   .side-option {
-      align-content: center;
-      justify-items: center;
-      height: 60px;
-    }
+    align-content: center;
+    justify-items: center;
+    height: 60px;
+  }
 
   .side-option:hover {
     background-color: $light-grey-2;
@@ -100,6 +105,22 @@
   .option-content {
     background-color: $light-grey-1;
     width: 100%;
+  }
+
+  .logo {
+    height: 100%;
+  }
+
+  .logo-container {
+    width: 100%;
+    height: 15%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .user-menu-container {
+    width: 100%;
+    height: 8%;
   }
 
 </style>

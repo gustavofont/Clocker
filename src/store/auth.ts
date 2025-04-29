@@ -22,10 +22,15 @@ const useAuthStore = defineStore('auth', ()=> {
     window.location.reload();
   }
 
+  function getUser() {
+    return JSON.parse(user.value || '');
+  }
+
   return {
     setToken,
     setUser,
     signout,
+    getUser,
   };
 });
 
