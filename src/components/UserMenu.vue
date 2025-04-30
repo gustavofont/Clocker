@@ -7,22 +7,30 @@
     </div>
     <div class="user-menu-description">
       <div class="user-menu-description-name">
-        {{ user.name}}
+        {{ user.name }}
       </div>
       <div class="user-menu-description-email">
         {{ user.email }}
       </div>
     </div>
     <div class="user-menu-options">
-      <span class="material-symbols-outlined">
-        {{ 'more_vert' }}
-      </span>
+      <DropdownMenu
+        :options="[
+          {
+            text: 'Logout',
+            prefixIcon: 'logout',
+            action: authstore.signout
+          }
+        ]"
+        :placement="'top-end'"
+      />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
  import useAuthStore from '@src/store/auth';
+ import DropdownMenu from './basicComponents/menus/DropdownMenu.vue';
  import { ref } from 'vue';
 
  const authstore = useAuthStore();
@@ -68,10 +76,6 @@
     color: white;
     margin-right: 10px;
     margin-left: auto;
-
-    :hover {
-      background-color: $light-grey-2;
-    }
   }
 
 </style>
