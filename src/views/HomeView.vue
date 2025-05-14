@@ -30,11 +30,12 @@
           </li>
         </ul>
         <div class="user-menu-container">
-          <UserMenu/>
+          <UserMenu />
         </div>
       </div>
       <div class="option-content">
-        content
+        <DashboardPage v-if="selectedSideOption === 1" />
+        <SchedulePage v-if="selectedSideOption === 2" />
       </div>
     </div>
   </div>
@@ -43,6 +44,8 @@
 <script setup lang="ts">
   import MenuOption from '@src/components/basicComponents/menus/MenuOption.vue';
   import UserMenu from '@src/components/UserMenu.vue';
+  import SchedulePage from '@src/components/resources/SchedulePage.vue';
+  import DashboardPage from '@src/components/resources/DashboardPage.vue';
   import {ref} from 'vue';
 
   const selectedSideOption = ref(1);
@@ -99,12 +102,13 @@
   }
 
   .side-option.selected {
-    background-color: $light-grey-1;
+    background-color: white;
   }
 
   .option-content {
-    background-color: $light-grey-1;
+    background-color: white;
     width: 100%;
+    height: 100%;
   }
 
   .logo {

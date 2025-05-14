@@ -4,3 +4,8 @@ export type Option = {
   active?: boolean,
   action: () => void,
 }
+
+export type DropdownOption = {
+  label: string,
+  value: string,
+}

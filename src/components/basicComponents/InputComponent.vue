@@ -48,7 +48,7 @@ const modelValue = defineModel<string | number>();
 
 </script>
 
-<style>
+<style lang="scss">
 .custom-input {
   color: white;
   display: flex;
@@ -78,7 +78,7 @@ const modelValue = defineModel<string | number>();
   font-size: 14px;
   padding-left: 10px;
   padding-right: 7px;
-  font-family: Monospace;
+  font-family: $font-default;
   color: #ffffff
 }
 
