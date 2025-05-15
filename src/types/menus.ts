@@ -7,5 +7,5 @@ export type Option = {
 
 export type DropdownOption = {
   label: string,
-  value: string,
+  value: string | number,
 }

@@ -9,7 +9,7 @@
         class="selectDropdown--input"
         :placeholder="placeholder"
         :disabled="disabled"
-        @input="updateValue"
+        @input="updateValue()"
       >
       <template #popper="{ hide }">
         <ul class="dropdown-menu-list">
@@ -36,7 +36,7 @@ import { InputType } from '@src/enums/inputEnum';
 import { Dropdown, Placement } from 'floating-vue';
 import { DropdownOption } from '@src/types/menus';
 
-const props = defineProps({
+defineProps({
   options: {
     type: Array as PropType<DropdownOption[]>,
     required: true,
@@ -57,10 +57,6 @@ const props = defineProps({
     type: String as PropType<Placement>,
     default: 'bottom',
   },
-  default: {
-    type: String,
-    default: '',
-  },
   disabled: {
     type: Boolean,
     default: false,
@@ -69,19 +65,15 @@ const props = defineProps({
 
 const emit = defineEmits(['update:model-value']);
 
-const value : Ref<string | number | undefined>= ref(props.default);
+const value = defineModel<string | number | undefined>() ;
 
 function updateValue() {
   emit('update:model-value', value);
 }
 
-function handleOptionSelection(option: string){
+function handleOptionSelection(option: string | number){
   value.value = option;
 }
-
-// watch(() => value, () => {
-//   updateValue();
-// });
 
 </script>
   
