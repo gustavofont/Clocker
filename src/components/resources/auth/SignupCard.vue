@@ -45,7 +45,7 @@
 <script setup lang="ts">
   import { ref } from 'vue';
   import ButtonComponent from '@src/components/basicComponents/ButtonComponent.vue';
-  import InputComponent from '@src/components/basicComponents/InputComponent.vue';
+  import InputComponent from '@src/components/basicComponents/SigninInput.vue';
   import { ButtonType } from '@src/enums/buttonEnum';
   import { InputType } from '@src/enums/inputEnum';
   import notify from '@src/notifications/notify';

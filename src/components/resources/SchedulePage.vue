@@ -49,19 +49,26 @@
         </div>
       </div>
     </div>
+    <div class="schedulePage--body-newSchedule">
+      <ButtonComponent
+        :type="ButtonType.PRIMARY"
+        :text="'New'"
+        :width="'100px'"
+        @click="()=> isFormOpen = true"
+      />
+    </div>
     <div class="schedulePage--body">
       <div class="schedulePage--body-form">
-        <div class="schedulePage--body-form-message">
+        <div
+          v-if=" !isFormOpen"
+          class="schedulePage--body-form-message"
+        >
           No schedule for this date
         </div>
-        <ButtonComponent
-          v-if="!isFormOpen"
-          :type="ButtonType.PRIMARY"
-          :text="'New'"
-          :width="'100px'"
-          @click="()=> isFormOpen = !isFormOpen"
+        <ScheduleForm
+          v-if="isFormOpen"
+          @close-form="() => isFormOpen = false"
         />
-        <ScheduleForm v-if="isFormOpen" />
       </div>
     </div>
   </div>
@@ -155,6 +162,11 @@
     padding: 15px;
     gap: 40px
   }
+  .schedulePage--body-newSchedule {
+    display: flex;
+    justify-content: end;
+    padding-right: 20px;
+  }
   .schedulePage--body-form-message {
     padding: 10px;
     display: flex;
@@ -163,9 +175,6 @@
   }
   .schedulePage--filter {
     width: auto;
-    display: flex;
-    align-items: center;
-    gap: 3px;
   }
   .schedulePage--filter-label {
     font-size: 14px;

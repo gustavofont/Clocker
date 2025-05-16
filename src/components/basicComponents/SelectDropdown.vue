@@ -9,7 +9,6 @@
         class="selectDropdown--input"
         :placeholder="placeholder"
         :disabled="disabled"
-        @input="updateValue()"
       >
       <template #popper="{ hide }">
         <ul class="dropdown-menu-list">
@@ -67,9 +66,6 @@ const emit = defineEmits(['update:model-value']);
 
 const value = defineModel<string | number | undefined>() ;
 
-function updateValue() {
-  emit('update:model-value', value);
-}
 
 function handleOptionSelection(option: string | number){
   value.value = option;
@@ -85,9 +81,7 @@ function handleOptionSelection(option: string | number){
   }
 
   .selectDropdown--input {
-    border: 1px solid;
-    border-radius: 5px;
-    padding: 8px;
+    padding: 5px;
     width: -webkit-fill-available; 
     font-family: $font-default;
   }

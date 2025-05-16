@@ -15,3 +15,10 @@ defineProps({
   }
 });
 </script>
+
+<style lang="scss">
+  .checkboxComponent {
+    display: flex;
+    align-items: center;
+  }
+</style>
