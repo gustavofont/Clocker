@@ -68,7 +68,10 @@
         <ScheduleForm
           v-if="isFormOpen"
           @close-form="() => isFormOpen = false"
+          @send-form="createSchedule"
         />
+
+        <ScheduleCard :schedule-data="scheduleData" />
       </div>
     </div>
   </div>
@@ -77,30 +80,45 @@
 <script setup lang="ts">
   import { Ref, ref, watch } from 'vue';
   import SelectDropdown from '../basicComponents/SelectDropdown.vue';
-  import { convertNumberToMonth, generateDaysOptions, generateMonthsOptions, generateYearsOptionsByRange } from '@src/utils/dataGenerator';
+  import { buildISODateString, convertNumberToMonth, generateDaysOptions, generateMonthsOptions, generateYearsOptionsByRange } from '@src/utils/dataGenerator';
   import IconComponent from '../basicComponents/IconComponent.vue';
   import { DropdownOption } from '@src/types/menus';
   import ScheduleForm from '../ScheduleForm.vue';
   import ButtonComponent from '../basicComponents/ButtonComponent.vue';
   import { ButtonType } from '@src/enums/buttonEnum';
+  import { Schedule } from '@src/types/schedule';
+  import request from '@src/utils/request';
+  import { NotificationType } from '@src/enums/notificationEnum';
+  import notify from '@src/notifications/notify';
+  import ScheduleCard from '../ScheduleCard.vue';
 
   const yearsOptions = generateYearsOptionsByRange(20);
   const monthsOptions = generateMonthsOptions();
   const daysOptions: Ref<Array<DropdownOption>> = ref([]);
 
-  const filters : Ref<{year: number | undefined, month: string | undefined, day: number | undefined}> = ref({
-    year: undefined,
-    month: undefined,
-    day: undefined
+  const filters : Ref<{year: number, month: string, day: number}> = ref({
+    year: 2000,
+    month: 'November',
+    day: 7
   });
 
   const currentDateCheckbox = ref(false);
 
-  const disableDayInput = ref(true);
+  const disableDayInput = ref(false);
 
   const disableDateFilters = ref(false);
 
   const isFormOpen = ref(false);
+
+  const scheduleData : Schedule = {
+    title: 'Teste 1',
+    description: 'teathjawgesgjkhasdk jhgbasdhjkbsdjkbsdgsjdahgkuj sdhgjksdfbgjkdfb jkfdhbgjkjfsdoj mgnklsdjn gklsdjngskldgjs dkgjsdklgj nsmkndif ndfklnbd fjklnhjgd ngdfjklnj ksbsdsbdn',
+    startTime: '20:10',
+    endTime: '21:43',
+    tag: 'Academia',
+    allDay: true,
+    notify: false,
+  };
 
   /**
    * Set filter to current date
@@ -128,6 +146,57 @@
       disableDayInput.value = false;
     }
   },{deep: true});
+
+  function validateForm(form: Schedule) {
+    let validated = true;
+    Object.keys(form).forEach((fieldKey) => {
+      const field =form[fieldKey as keyof Schedule];
+
+      if(field === null || field === undefined) {
+        validated = false;
+      }
+      if(typeof(field) === 'string') {
+        if (field === '')
+          validated = false;
+      }
+    });
+
+    return validated;
+  }
+
+  async function createSchedule(form: Schedule) {
+    if(validateForm(form)) {
+      
+      form.startTime = buildISODateString(
+        form.startTime,
+        filters.value.day, 
+        filters.value.month, 
+        filters.value.year
+      ); 
+      form.endTime = buildISODateString(
+        form.endTime,
+        filters.value.day, 
+        filters.value.month, 
+        filters.value.year
+      );
+
+      try {
+        const res = await request.post('/schedule', {form});
+        if(res.status === 200) {
+          notify(NotificationType.SUCCESS, 'Schecdule created !');
+          isFormOpen.value = false;
+        } else {
+          notify(NotificationType.INFO, res.data);
+        }
+
+      } catch (error: any) {
+        notify(NotificationType.ERROR, error.message);
+        console.log(error);
+      }
+    } else {
+      notify(NotificationType.ERROR, 'Fill every field to create a schedule');
+    }
+  }
 
 </script>
 

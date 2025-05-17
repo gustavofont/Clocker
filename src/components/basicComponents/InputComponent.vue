@@ -2,7 +2,7 @@
   <div class="inputComponent">
     <input
       v-model="value"
-      type="text"
+      :type="type"
       class="inputComponent--input"
     >
   </div>
@@ -15,6 +15,10 @@
       type: String,
       default: '200px'
     },
+    type : {
+      type: String,
+      default: 'text'
+    }
   });
 
   const value = defineModel<string>();

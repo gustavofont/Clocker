@@ -25,7 +25,10 @@
             Start
           </div>
           <div class="scheduleForm--container-field-input">
-            <InputComponent v-model="form.startTime" />
+            <InputComponent
+              v-model="form.startTime"
+              :type="InputType.TIME"
+            />
           </div>
         </div>
         <div class="scheduleForm--container-field">
@@ -33,7 +36,10 @@
             End
           </div>
           <div class="scheduleForm--container-field-input">
-            <InputComponent v-model="form.endTime" />
+            <InputComponent
+              v-model="form.endTime"
+              :type="InputType.TIME"
+            />
           </div>
         </div>
         <div class="scheduleForm--container-field">
@@ -69,8 +75,13 @@
             Notify
           </div>
         </div>
-        <div>
-          {{ form }}
+        <div class="scheduleForm--container-field">
+          <ButtonComponent
+            :text="'send'"
+            class="scheduleForm--container-button"
+            :type="ButtonType.SECONDARY"
+            @submit="send"
+          />
         </div>
       </div>
     </div>
@@ -85,8 +96,11 @@
   import { Schedule } from '@src/types/schedule';
   import IconComponent from './basicComponents/IconComponent.vue';
   import InputComponent from './basicComponents/InputComponent.vue';
+  import ButtonComponent from './basicComponents/ButtonComponent.vue';
+  import { ButtonType } from '@src/enums/buttonEnum';
+  import { InputType } from '@src/enums/inputEnum';
 
-  const emit = defineEmits(['close-form']);
+  const emit = defineEmits(['close-form', 'send-form']);
 
   const form: Ref<Schedule> = ref({
     title: '',
@@ -104,6 +118,13 @@
       value: 'Outlook',
     },
   ];
+
+  async function send() {
+    
+    // validate form 
+
+    emit('send-form', form.value);
+  }
 
 </script>
 
@@ -141,11 +162,16 @@
  .scheduleForm--container-checkbox {
   display: flex;
   align-items: center;
+  margin-top: 15px;
  }
 
  .scheduleForm--container-selectDropdown {
   display: flex;
   align-items: center;
   gap: 5px;
+ }
+
+ .scheduleForm--container-button {
+  margin-top: 15px;
  }
 </style>
