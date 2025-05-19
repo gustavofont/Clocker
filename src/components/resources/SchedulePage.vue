@@ -71,14 +71,20 @@
           @send-form="createSchedule"
         />
 
-        <ScheduleCard :schedule-data="scheduleData" />
+        <div
+          v-for="(schedule, key) in schedules"
+          :key="key"
+          class="schedulePage--body--form-schedules"
+        >
+          <ScheduleCard :schedule-data="schedule" />
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-  import { Ref, ref, watch } from 'vue';
+  import { onMounted, Ref, ref, watch } from 'vue';
   import SelectDropdown from '../basicComponents/SelectDropdown.vue';
   import { buildISODateString, convertNumberToMonth, generateDaysOptions, generateMonthsOptions, generateYearsOptionsByRange } from '@src/utils/dataGenerator';
   import IconComponent from '../basicComponents/IconComponent.vue';
@@ -97,9 +103,9 @@
   const daysOptions: Ref<Array<DropdownOption>> = ref([]);
 
   const filters : Ref<{year: number, month: string, day: number}> = ref({
-    year: 2000,
-    month: 'November',
-    day: 7
+    year: 2025,
+    month: 'May',
+    day: 15
   });
 
   const currentDateCheckbox = ref(false);
@@ -110,15 +116,41 @@
 
   const isFormOpen = ref(false);
 
-  const scheduleData : Schedule = {
-    title: 'Teste 1',
-    description: 'teathjawgesgjkhasdk jhgbasdhjkbsdjkbsdgsjdahgkuj sdhgjksdfbgjkdfb jkfdhbgjkjfsdoj mgnklsdjn gklsdjngskldgjs dkgjsdklgj nsmkndif ndfklnbd fjklnhjgd ngdfjklnj ksbsdsbdn',
-    startTime: '20:10',
-    endTime: '21:43',
-    tag: 'Academia',
-    allDay: true,
-    notify: false,
-  };
+  const schedules: Ref<Array<Schedule>> = ref([]);
+
+  async function updateSchedules() {
+    const requestFilters = {
+      startTime: {
+        start: buildISODateString(
+        '00:01',
+        filters.value.day, 
+        filters.value.month, 
+        filters.value.year
+      ),
+        end: buildISODateString(
+        '23:59',
+        filters.value.day, 
+        filters.value.month, 
+        filters.value.year
+      ),
+      }
+    };
+
+    try {
+      const res = await request.get('schedule/all', {params: {filters: requestFilters}});
+      if(res.status === 200) {
+        notify(NotificationType.SUCCESS, 'Schecdules loaded');
+        schedules.value = res.data;
+      } else {
+        notify(NotificationType.INFO, res.data);
+      }
+
+    } catch (error: any) {
+      notify(NotificationType.ERROR, error.message);
+      console.log(error);
+    }
+
+  }
 
   /**
    * Set filter to current date
@@ -130,6 +162,9 @@
     filters.value.day = currentDate.getDate();
   }
 
+  /**
+   * handle actions from current date checkbox
+   */
   function handleCurrentDateCheckbox() {
     currentDateCheckbox.value = !currentDateCheckbox.value;
     if(currentDateCheckbox.value) {
@@ -140,13 +175,15 @@
     }
   }
 
-  watch(filters, () => {
-    if(filters.value.month && filters.value.year) {
-      daysOptions.value = generateDaysOptions(filters.value.month, filters.value.year);
-      disableDayInput.value = false;
-    }
+  watch(filters, (oldFilters, newFilters) => {
+    daysOptions.value = generateDaysOptions(filters.value.month, filters.value.year);
+    updateSchedules();
   },{deep: true});
 
+  /**
+   * Validates schedule form
+   * @param form 
+   */
   function validateForm(form: Schedule) {
     let validated = true;
     Object.keys(form).forEach((fieldKey) => {
@@ -164,6 +201,10 @@
     return validated;
   }
 
+  /**
+   * Sends rquest to create a new schedule
+   * @param form 
+   */
   async function createSchedule(form: Schedule) {
     if(validateForm(form)) {
       
@@ -185,6 +226,7 @@
         if(res.status === 200) {
           notify(NotificationType.SUCCESS, 'Schecdule created !');
           isFormOpen.value = false;
+          updateSchedules();
         } else {
           notify(NotificationType.INFO, res.data);
         }
@@ -197,6 +239,11 @@
       notify(NotificationType.ERROR, 'Fill every field to create a schedule');
     }
   }
+
+  onMounted(() => {
+    daysOptions.value = generateDaysOptions(filters.value.month, filters.value.year);
+    updateSchedules();
+  });
 
 </script>
 

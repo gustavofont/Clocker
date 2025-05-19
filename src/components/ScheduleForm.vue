@@ -129,6 +129,14 @@
 </script>
 
 <style lang="scss">
+  .scheduleForm {
+    border-style: solid;
+    border-radius: 5px;
+    border-color: $light-grey-4;
+    border-width: thin;
+    padding: 15px;
+  }
+
  .scheduleForm--container {
   width: 100%;
   display: flex;

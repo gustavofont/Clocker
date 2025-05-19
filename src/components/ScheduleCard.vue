@@ -16,14 +16,14 @@
       </div>
       <div class="scheduleCard--body-col2">
         <div class="scheduleCard--body-col2-info">
-          Start : {{ scheduleData.startTime }}
+          Start : {{ timeFormatter(scheduleData.startTime) }}
         </div>
         <div class="scheduleCard--body-col2-info">
-          End : {{ scheduleData.endTime }}
+          End : {{ timeFormatter(scheduleData.endTime) }}
         </div>
       </div>
       <div class="scheduleCard--body-col3">
-        {{ '17/12/2024' }}
+        {{ dateFormatter(scheduleData.startTime) }}
         <div class="scheduleCard--body-col3-deleteSchedule">
           <IconComponent
             :icon-name="'delete'"
@@ -47,6 +47,23 @@ defineProps({
     required: true,
   },
 });
+
+function timeFormatter(date: string) {
+  const gtmDate = new Date(date).toString();
+
+  const splitedDate = gtmDate.split(' ');
+
+  return `${splitedDate[4]}`;
+}
+
+function dateFormatter(date: string) {
+  const gtmDate = new Date(date).toString();
+
+  const splitedDate = gtmDate.split(' ');
+
+  return `${splitedDate[1]} ${splitedDate[2]}th, ${splitedDate[3]}.`;
+}
+
 </script>
 
 <style lang="scss">
@@ -68,6 +85,8 @@ defineProps({
   width: 50%;
   margin-top: 5px;
   margin-left: 10px;
+  font-weight: bold;
+
 }
 
 .scheduleCard--header-tag {

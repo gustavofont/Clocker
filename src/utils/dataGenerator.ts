@@ -96,5 +96,5 @@ export function generateDaysOptions(month: number | string, year: number) {
 
 export function buildISODateString(hour: string, day: number,month: string, year: number,) {
   const date =  new Date(`${month} ${day}, ${year} ${hour}`);
-  return date.toISOString().slice(0, 19).replace('T', ' ');
+  return date.toISOString();
 }
