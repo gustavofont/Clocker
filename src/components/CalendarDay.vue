@@ -21,7 +21,10 @@
             :placement="'right'"
             class="calendarDay--body-scheduleList-menu"
           >
-            <div class="calendarDay--body-scheduleList-schedule">
+            <div
+              class="calendarDay--body-scheduleList-schedule"
+              :class="`tag${schedule.tag}`"
+            >
               <p class="calendarDay--body-scheduleList-schedule-startTime">
                 {{ timeFormatter(schedule?.startTime) }}
               </p>
@@ -119,6 +122,15 @@ function timeFormatter(date: string) {
   display: flex;
   align-items: center;
   gap: 5px;
+}
+.calendarDay--body-scheduleList-schedule.tagDefault{
+  background-color: $tag-default;
+}
+.calendarDay--body-scheduleList-schedule.tagWork{
+  background-color: $tag-work;
+}
+.calendarDay--body-scheduleList-schedule.tagSchool{
+  background-color: $tag-school;
 }
 
 .calendarDay--body-scheduleList-schedule-startTime {
