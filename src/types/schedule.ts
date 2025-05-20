@@ -1,4 +1,4 @@
-import { TagType } from '@src/enums/tagEnum'
+import { TagType } from '@src/enums/tagEnum';
 
 export type Schedule = {
   id?: number,

@@ -64,7 +64,6 @@ import { CalendarDay } from '@src/types/schedule';
 import { PropType } from 'vue';
 import { Menu } from 'floating-vue';
 import TagComponent from '@src/components/TagComponent.vue';
-import { TagType } from '@src/enums/tagEnum';
 
 defineProps({
   schedulesData: {

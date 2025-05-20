@@ -30,7 +30,7 @@
 </template>
 
 <script setup lang="ts">
-import { PropType, Ref, ref, watch } from 'vue';
+import { PropType } from 'vue';
 import { InputType } from '@src/enums/inputEnum';
 import { Dropdown, Placement } from 'floating-vue';
 import { DropdownOption } from '@src/types/menus';
@@ -61,8 +61,6 @@ defineProps({
     default: false,
   }
 });
-
-const emit = defineEmits(['update:model-value']);
 
 const value = defineModel<string | number | undefined>() ;
 
