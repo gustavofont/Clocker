@@ -8,3 +8,10 @@ export type Schedule = {
   allDay: boolean,
   notify: boolean,
 }
+
+export type CalendarDay = {
+  schedule_date : string,
+  schedules: Schedule[]
+}
+
+export type CalendarMonth = Array<CalendarDay>

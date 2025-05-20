@@ -101,7 +101,7 @@ function dateFormatter(date: string) {
   width: 15px;
   height: 15px;
   border-radius: 50%;
-  background-color: blue;
+  background-color: $light-grey-4;
 }
 
 .scheduleCard--body {

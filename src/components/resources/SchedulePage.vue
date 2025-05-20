@@ -175,7 +175,7 @@
     }
   }
 
-  watch(filters, (oldFilters, newFilters) => {
+  watch(filters, () => {
     daysOptions.value = generateDaysOptions(filters.value.month, filters.value.year);
     updateSchedules();
   },{deep: true});
