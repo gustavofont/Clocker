@@ -54,7 +54,7 @@ function timeFormatter(date: string) {
 
   const splitedDate = gtmDate.split(' ');
 
-  return `${splitedDate[4]}`;
+  return splitedDate[4].substring(0, 5);
 }
 
 function dateFormatter(date: string) {

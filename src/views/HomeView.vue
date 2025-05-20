@@ -24,7 +24,7 @@
             @click="selectOption(2)"
           >
             <MenuOption
-              :text="'Time Tracker'"
+              :text="'Schedule'"
               :prefix-icon="'schedule'"
             />
           </li>
