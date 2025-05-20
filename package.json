@@ -4,9 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "start": "vite",
     "lint": "npx eslint",
     "build": "vue-tsc -b && vite build",
+    "install:project": "bash scripts/installProject.sh .",
+    "start:backend": "bash scripts/startBackend.sh .",
     "preview": "vite preview"
   },
   "dependencies": {
