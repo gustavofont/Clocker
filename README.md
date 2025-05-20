@@ -72,10 +72,12 @@ Essa separação permite que cada serviço evolua de forma independente e seja i
 
 ## 📸 Prints e Demonstração
 
+### 📅 Criar Schedule
+
+![CreateSchedule2](https://github.com/user-attachments/assets/1bfb946b-4cfb-4c0f-8a9a-47ae54effffb)
 
 ### 🖼 Dashboard
 
-### 📅 Criar Schedule
+![Dashboard2](https://github.com/user-attachments/assets/4786d3ab-e6a3-46d6-a177-35fa19369cf7)
 
-Para vídeos, você pode subir no YouTube e adicionar um link embed:
 
