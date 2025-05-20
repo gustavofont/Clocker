@@ -46,7 +46,7 @@
 <script setup lang="ts">
   import { onMounted, Ref, ref, watch } from 'vue';
   import SelectDropdown from '../basicComponents/SelectDropdown.vue';
-  import { convertMonthToDateFormat, generateMonthsOptions, generateYearsOptionsByRange, getDaysByMonthAndYear } from '@src/utils/dataGenerator';
+  import { convertMonthToDateFormat, generateMonthsOptions, generateYearsOptionsByRange } from '@src/utils/dataGenerator';
   import CalendarDay from '../CalendarDay.vue';
   import request from '@src/utils/request';
   import { CalendarMonth } from '@src/types/schedule';

@@ -1,10 +1,12 @@
+import { TagType } from '@src/enums/tagEnum'
+
 export type Schedule = {
   id?: number,
   title: string,
   startTime: string,
   endTime: string,
   description: string,
-  tag: string,
+  tag: TagType,
   allDay: boolean,
   notify: boolean,
 }

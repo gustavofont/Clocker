@@ -184,19 +184,23 @@
    * Validates schedule form
    * @param form 
    */
-  function validateForm(form: Schedule) {
-    let validated = true;
+  function validateForm(form: Schedule) : string | undefined {
+    let validated;
     Object.keys(form).forEach((fieldKey) => {
       const field =form[fieldKey as keyof Schedule];
 
       if(field === null || field === undefined) {
-        validated = false;
+        validated = 'Missing Field';
       }
       if(typeof(field) === 'string') {
         if (field === '')
-          validated = false;
+          validated = 'Missing Field';
       }
     });
+
+    if(form.startTime > form.endTime) {
+      validated = 'StartTime bigger than EndTime';
+    }
 
     return validated;
   }
@@ -206,7 +210,8 @@
    * @param form 
    */
   async function createSchedule(form: Schedule) {
-    if(validateForm(form)) {
+    const validation = validateForm(form);
+    if(!validation) {
       
       form.startTime = buildISODateString(
         form.startTime,
@@ -236,7 +241,7 @@
         console.log(error);
       }
     } else {
-      notify(NotificationType.ERROR, 'Fill every field to create a schedule');
+      notify(NotificationType.ERROR, validation);
     }
   }
 

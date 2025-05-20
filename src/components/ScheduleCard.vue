@@ -5,7 +5,7 @@
         {{ scheduleData.title }}
       </div>
       <div class="scheduleCard--header-tag">
-        <div class="scheduleCard--header-tag-tagCicle" />
+        <TagComponent :tag="scheduleData.tag" />
       </div>
     </div>
     <div class="scheduleCard--body">
@@ -39,6 +39,7 @@
 import { Schedule } from '@src/types/schedule';
 import { PropType } from 'vue';
 import IconComponent from './basicComponents/IconComponent.vue';
+import TagComponent from '@src/components/TagComponent.vue';
 
 
 defineProps({

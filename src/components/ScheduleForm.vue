@@ -99,6 +99,7 @@
   import ButtonComponent from './basicComponents/ButtonComponent.vue';
   import { ButtonType } from '@src/enums/buttonEnum';
   import { InputType } from '@src/enums/inputEnum';
+  import { TagType } from '@src/enums/tagEnum';
 
   const emit = defineEmits(['close-form', 'send-form']);
 
@@ -107,15 +108,23 @@
     startTime: '',
     endTime: '',
     description: '',
-    tag: '',
+    tag: TagType.DEFAULT,
     allDay: false,
     notify: false,
   });
 
   const tagOptions : DropdownOption[] = [
     {
-      label: 'Outlook',
-      value: 'Outlook',
+      label: TagType.DEFAULT,
+      value: TagType.DEFAULT,
+    },
+    {
+      label: TagType.WORK,
+      value: TagType.WORK,
+    },
+    {
+      label: TagType.SCHOOL,
+      value: TagType.SCHOOL,
     },
   ];
 

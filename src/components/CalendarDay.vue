@@ -5,6 +5,14 @@
     </div>
     <div class="calendarDay--body">
       <ul class="calendarDay--body-scheduleList">
+        <div
+          v-if="schedulesData.schedules.length === 0"
+          class="calendarDay--body-message"
+        >
+          <p>
+            No schedules
+          </p> 
+        </div>
         <li
           v-for="(schedule, index) in schedulesData.schedules"
           :key="index"
@@ -27,7 +35,7 @@
                   <div class="calendarDay--body-scheduleList-schedule-popper-header-title">
                     {{ schedule.title }}
                   </div>
-                  <div class="calendarDay--body-scheduleList-schedule-popper-header-tag" />
+                  <TagComponent :tag="schedule.tag" />
                 </div>
                 <div class="calendarDay--body-scheduleList-schedule-popper-body">
                   <div class="calendarDay--body-scheduleList-schedule-popper-body-description">
@@ -55,8 +63,10 @@
 import { CalendarDay } from '@src/types/schedule';
 import { PropType } from 'vue';
 import { Menu } from 'floating-vue';
+import TagComponent from '@src/components/TagComponent.vue';
+import { TagType } from '@src/enums/tagEnum';
 
-const props = defineProps({
+defineProps({
   schedulesData: {
     type: Object as PropType<CalendarDay>,
     required: true, 
@@ -83,6 +93,11 @@ function timeFormatter(date: string) {
   border-width: thin;
   overflow-y: auto;
   overflow-x: auto;
+}
+.calendarDay--body-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .calendarDay--body-scheduleList {
@@ -126,13 +141,6 @@ function timeFormatter(date: string) {
   justify-content: center;
   align-items: center;
   gap: 2px;
-}
-
-.calendarDay--body-scheduleList-schedule-popper-header-tag {
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  background-color: $light-grey-4;
 }
 
 .calendarDay--body-scheduleList-schedule-popper-body-time {
