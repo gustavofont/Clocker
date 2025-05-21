@@ -31,6 +31,10 @@ git clone https://github.com/gustavofont/Clocker
 ```
 cd Clocker
 ```
+ - Baixar e atualizar os submodulos:
+```
+git submodule update --init
+```
  - Instale o projeto:
 ```
 npm run install:project
