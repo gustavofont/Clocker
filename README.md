@@ -99,7 +99,7 @@ O uso do ChatGPT como ferramenta de apoio técnico e criativo contribuiu signifi
 
 ### Demonstração
 
-[Screencast from 2025-05-20 23-32-08.webm](https://github.com/user-attachments/assets/45ffe070-1800-482b-a341-05defd146c6b)
+[Screencast from 2025-05-21 16-48-53.webm](https://github.com/user-attachments/assets/6cc3321c-3bca-44ca-beb3-a88ef8b0ec8a)
 
 ## Observação sobre o latout gerado pelo chat gpt
  ### O layout foi gerado com base em desenho feito a mão e anexado ao prompt da IA, segue abaixo a imagem fonte e a imagem gerada
