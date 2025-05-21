@@ -1,50 +1,49 @@
 # 🕒 Clocker
-Clocker é uma plataforma de organização pessoal que permite ao usuário criar schedules (agendas) personalizadas e acompanhá-las em uma visualização prática em formato de dashboard.
+Clocker é uma plataforma de organização pessoal que permite ao usuário criar schedules personalizadas e acompanhá-las em uma visualização prática em formato de dashboard.
 
 ## 📋 Funcionalidades
-Criação de schedules (agendas) personalizadas.
+ - Criação de schedules personalizadas.
 
-Possibilidade de adicionar tags específicas às agendas, como trabalho, escola, entre outras categorias predeterminadas.
+ - Possibilidade de adicionar tags específicas às schedules, como trabalho, escola, entre outras categorias predeterminadas.
 
-Visualização em tabela no dashboard.
+ - Visualização em tabela no dashboard.
 
-Armazenamento persistente de dados do usuário.
+ - Armazenamento persistente de dados do usuário.
 
 ## 🚀 Como rodar o projeto localmente
-Pré-requisitos
-Certifique-se de ter instalado:
+### Pré-requisitos
 
-Node.js (v20+)
+ - Node.js (v20+)
 
-NPM (v10.8.2+)
+ - NPM (v10.8.2+)
 
-Git
+ - Git
 
-Docker (v27+)
+ - Docker (v27+)
 
 ### Passos
-Clone o repositório:
+ - Clone o repositório:
 
 ```
-git clone https://github.com/seu-usuario/clocker.git
+git clone https://github.com/gustavofont/Clocker
 ```
-Entrar na raiz do projeto:
+ - Entrar na raiz do projeto:
 ```
 cd Clocker
 ```
-Instale o projeto:
+ - Instale o projeto:
 ```
 npm run install:project
 ```
-Iniciar o FrontEnd:
+ - Iniciar o FrontEnd:
 ```
 npm run start
 ```
-Iniciar o BackEnd:
+ - Iniciar o BackEnd:
 ```
 npm run start:backend
 ```
-Acesse no navegador:
+ - Acesse no navegador:
 [http://localhost:8080](http://localhost:8080)
 ## 🧱 Arquitetura do Projeto
 O Clocker foi desenvolvido seguindo uma arquitetura de microsserviços, garantindo escalabilidade, separação de responsabilidades e facilidade de manutenção. O sistema é dividido em três serviços principais:
@@ -70,6 +69,20 @@ O Clocker foi desenvolvido seguindo uma arquitetura de microsserviços, garantin
 
 Essa separação permite que cada serviço evolua de forma independente e seja implantado ou escalado conforme a necessidade.
 
+## 🤖 Uso de Inteligência Artificial no Desenvolvimento
+Durante o desenvolvimento do Clocker, a Inteligência Artificial, especificamente o ChatGPT, foi utilizada de forma estratégica para auxiliar em etapas importantes do projeto. A seguir, algumas aplicações práticas:
+
+### Análise de Requisitos
+ - O ChatGPT foi utilizado para apoiar a definição dos requisitos iniciais do sistema, ajudando a identificar as funcionalidades essenciais de uma plataforma de organização pessoal. Também foi feito um levantamento e análise de softwares semelhantes ao Clocker, o que ajudou a guiar decisões sobre usabilidade, estrutura e diferenciais da aplicação.
+
+### Geração de Layout Inicial
+ - Para o frontend, foi solicitada ao ChatGPT a criação de uma imagem exemplo de layout base. Essa referência visual serviu como ponto de partida para a definição da estrutura e estilo da interface do usuário, facilitando o planejamento visual da aplicação.
+
+### Construção de Query SQL para o Dashboard
+ - No backend, o ChatGPT foi utilizado para auxiliar na escrita de uma query SQL complexa, responsável por buscar e agrupar os dados necessários para alimentar a página de dashboard. Isso ajudou a acelerar o desenvolvimento e garantir uma lógica de consulta eficiente.
+
+O uso do ChatGPT como ferramenta de apoio técnico e criativo contribuiu significativamente para a agilidade e qualidade do projeto, permitindo decisões mais bem fundamentadas e entregas mais rápidas em diferentes áreas da aplicação.
+
 ## 📸 Prints e Demonstração
 
 ### 📅 Criar Schedule
@@ -80,4 +93,11 @@ Essa separação permite que cada serviço evolua de forma independente e seja i
 
 ![Dashboard2](https://github.com/user-attachments/assets/4786d3ab-e6a3-46d6-a177-35fa19369cf7)
 
+### Demonstração
 
+[Screencast from 2025-05-20 23-32-08.webm](https://github.com/user-attachments/assets/45ffe070-1800-482b-a341-05defd146c6b)
+
+## Observação sobre o latout gerado pelo chat gpt
+ ### O layout foi gerado com base em desenho feito a mão e anexado ao prompt da IA, segue abaixo a imagem fonte e a imagem gerada
+ - Imagem fonte : ![WhatsApp Image 2025-04-25 at 14 21 53](https://github.com/user-attachments/assets/733ae8ed-efb6-49bd-8e5b-d89b1eda1aa8)
+ - Imagem gerada : ![ChatGPT Image May 20, 2025, 11_45_35 PM](https://github.com/user-attachments/assets/c7c74568-e388-411a-8172-88a23c8f293e)
