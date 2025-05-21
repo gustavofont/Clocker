@@ -60,7 +60,7 @@
     <div class="schedulePage--body">
       <div class="schedulePage--body-form">
         <div
-          v-if=" !isFormOpen"
+          v-if=" !isFormOpen && schedules.length===0"
           class="schedulePage--body-form-message"
         >
           No schedule for this date
