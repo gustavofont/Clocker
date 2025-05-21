@@ -80,7 +80,11 @@ defineProps({
 });
 
 function timeFormatter(date: string) {
-  return date.substring(0, 5);
+  const gtmDate = new Date(`${date} UTC`).toString();
+
+  const splitedDate = gtmDate.split(' ');
+
+  return splitedDate[4].substring(0, 5);
 }
 
 </script>
