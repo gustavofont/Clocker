@@ -43,7 +43,7 @@ npm run install:project
 ```
 npm run start
 ```
- - Iniciar o BackEnd:
+ - Iniciar o BackEnd (em um terminal diferente):
 ```
 npm run start:backend
 ```
