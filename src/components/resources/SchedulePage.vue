@@ -76,7 +76,10 @@
           :key="key"
           class="schedulePage--body--form-schedules"
         >
-          <ScheduleCard :schedule-data="schedule" />
+          <ScheduleCard
+            :schedule-data="schedule"
+            @update-schedules="updateSchedules"
+          />
         </div>
       </div>
     </div>

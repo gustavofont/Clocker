@@ -28,6 +28,7 @@
           <IconComponent
             :icon-name="'delete'"
             class="scheduleCard--body-col3-deleteSchedule-icon"
+            @click="deleteSchedule"
           />
         </div>
       </div>
@@ -40,9 +41,13 @@ import { Schedule } from '@src/types/schedule';
 import { PropType } from 'vue';
 import IconComponent from './basicComponents/IconComponent.vue';
 import TagComponent from '@src/components/TagComponent.vue';
+import request from '@src/utils/request';
+import notify from '@src/notifications/notify';
+import { NotificationType } from '@src/enums/notificationEnum';
 
+const emit = defineEmits(['update-schedules']);
 
-defineProps({
+const props = defineProps({
   scheduleData: {
     type: Object as PropType<Schedule>,
     required: true,
@@ -63,6 +68,22 @@ function dateFormatter(date: string) {
   const splitedDate = gtmDate.split(' ');
 
   return `${splitedDate[1]} ${splitedDate[2]}th, ${splitedDate[3]}.`;
+}
+
+async function deleteSchedule() {
+  try {
+    const res = await request.delete('schedule/', {params: {scheduleId: props.scheduleData.id }});
+    if(res.status === 200) {
+      notify(NotificationType.SUCCESS, 'Schecdule deleted');
+      emit('update-schedules');
+    } else {
+      notify(NotificationType.INFO, res.data);
+    }
+
+  } catch (error: any) {
+    notify(NotificationType.ERROR, error.message);
+    console.log(error);
+  }
 }
 
 </script>
