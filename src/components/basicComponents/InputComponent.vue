@@ -4,6 +4,7 @@
       v-model="value"
       :type="type"
       class="inputComponent--input"
+      :disabled="disabled"
     >
   </div>
 </template>
@@ -18,6 +19,10 @@
     type : {
       type: String,
       default: 'text'
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
     }
   });
 

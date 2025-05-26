@@ -21,7 +21,7 @@
   
   const emit = defineEmits(['update:modelValue']);
 
-  const active = defineModel<boolean>();
+  const active = defineModel<boolean>({default:false});
 
   function handleCheckbox() {
     active.value = !active.value;

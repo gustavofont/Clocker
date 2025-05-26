@@ -28,6 +28,7 @@
             <InputComponent
               v-model="form.startTime"
               :type="InputType.TIME"
+              :disabled="disableDates"
             />
           </div>
         </div>
@@ -39,6 +40,7 @@
             <InputComponent
               v-model="form.endTime"
               :type="InputType.TIME"
+              :disabled="disableDates"
             />
           </div>
         </div>
@@ -64,13 +66,19 @@
           />
         </div>
         <div class="scheduleForm--container-checkbox">
-          <CheckboxComponent @update:model-value="(value) => form.allDay = value" />
+          <CheckboxComponent 
+            @update:model-value="(value) => form.allDay = value"
+            @click="handleAllDay"
+          />
           <div class="scheduleForm--container-field-label">
             AllDay
           </div>
         </div>
         <div class="scheduleForm--container-checkbox">
-          <CheckboxComponent @update:model-value="(value) => form.notify = value" />
+          <CheckboxComponent
+            @update:model-value="(value) => {
+              form.notify = value}"
+          />
           <div class="scheduleForm--container-field-label">
             Notify
           </div>
@@ -113,6 +121,8 @@
     notify: false,
   });
 
+  const disableDates = ref(false);
+
   const tagOptions : DropdownOption[] = [
     {
       label: TagType.DEFAULT,
@@ -128,10 +138,19 @@
     },
   ];
 
-  async function send() {
-    
-    // validate form 
+  function handleAllDay() {
+    const { allDay } = form.value;
 
+    if(allDay) {
+      form.value.startTime = '00:01';
+      form.value.endTime = '23:59';
+      disableDates.value = true;
+    } else {
+      disableDates.value = false;
+    }
+  }
+
+  async function send() {
     emit('send-form', form.value);
   }
 
