@@ -75,10 +75,7 @@
           </div>
         </div>
         <div class="scheduleForm--container-checkbox">
-          <CheckboxComponent
-            @update:model-value="(value) => {
-              form.notify = value}"
-          />
+          <CheckboxComponent @update:model-value="(value) => form.notify = value" />
           <div class="scheduleForm--container-field-label">
             Notify
           </div>
