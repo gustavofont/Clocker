@@ -1,0 +1,45 @@
+version: '3.9'
+
+services:
+  clocker:
+    build:
+      context: ../
+      dockerfile: ./compose/clocker/Dockerfile
+    container_name: clocker
+    depends_on:
+      - clocker-backend
+    ports:
+      - "8080:8080"
+    networks:
+      - backend
+
+  clocker-backend:
+    build:
+      context: ../clocker-backend
+      dockerfile: ./docker-volumes/clocker-backend/Dockerfile
+    container_name: clocker-backend
+    depends_on:
+      - db
+    ports:
+      - "3000:3000"
+    networks:
+      - backend
+
+  db:
+    build:
+      context: ../clocker-backend/docker-volumes/db_volume/
+      dockerfile: ./Dockerfile
+    image: mysql:latest
+    container_name: db
+    restart: always
+    ports:
+      - "3306:3306"
+    networks:
+      - backend
+
+
+volumes:
+  pgdata:
+
+networks:
+  backend:

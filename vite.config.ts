@@ -7,6 +7,7 @@ export default defineConfig({
   plugins: [vue()],
   base: '/',
   server: {
+    host: '0.0.0.0', // If loca run, changte to '127.0.0.1'
     port: 8080
   },
   resolve: {
