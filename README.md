@@ -13,9 +13,7 @@ Clocker é uma plataforma de organização pessoal que permite ao usuário criar
 ## 🚀 Como rodar o projeto localmente
 ### Pré-requisitos
 
- - Node.js (v20+)
-
- - NPM (v10.8.2+)
+- Docker Compose (v2.29+)
 
  - Git
 
@@ -35,18 +33,15 @@ cd Clocker
 ```
 git submodule update --init
 ```
- - Instale o projeto:
+ - Entrar no diretorio do docker docker compose:
 ```
-npm run install:project
+cd compose/
 ```
- - Iniciar o FrontEnd:
+ - Iniciar o Projeto:
 ```
-npm run start
+docker compose up --build
 ```
- - Iniciar o BackEnd (em um terminal diferente):
-```
-npm run start:backend
-```
+
  - Acesse no navegador:
 [http://localhost:8080](http://localhost:8080)
 ## 🧱 Arquitetura do Projeto
